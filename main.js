@@ -7,19 +7,19 @@ let width = 15
 let direction = 1
 let invadersId
 let goingRight = true
-
+//
 let aliensRemoved = []
 let results = 0
-
+// //
 for (let i = 0; i < 225; i++) {
     const square = document.createElement('div')
     grid.appendChild(square)
 }
 
 const squares = Array.from(document.querySelectorAll('.grid div'))
-//khởi tạo mảng gồm n phần tử giống nhau từ kết quả trả về của NodeList của querySelectorAll
-//https://www.javascripttutorial.net/javascript-dom/javascript-queryselector/
-console.log('squares====',squares)
+// // //khởi tạo mảng gồm n phần tử giống nhau từ kết quả trả về của querySelectorAll
+// // //https://www.javascripttutorial.net/javascript-dom/javascript-queryselector/
+// // console.log('squares====',squares)
 let alienInvaders = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
     15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
@@ -81,36 +81,41 @@ function moveInvaders() {
 
     for (let i = 0; i < alienInvaders.length; i++) {
         // console.log(alienInvaders[i])
-        if (alienInvaders[i] > squares.length-20) {
+        if (alienInvaders[i] > squares.length-15) {
             resultsDisplay.innerHTML = 'GAME OVER'
-            clearInterval(invadersId)
+            window.location.reload()
+            // clearInterval(invadersId)
         }
     }
     if (aliensRemoved.length === alienInvaders.length) {
         resultsDisplay.innerHTML = 'YOU WIN'
-        clearInterval(invadersId)
+        window.location.reload()
+        // clearInterval(invadersId)
     }
 }
 
-invadersId = setInterval(moveInvaders, 500)
+invadersId = setInterval(moveInvaders, 1000)
 
 
 
 squares[currentShooterIndex].classList.add('shooter')
 // console.log(squares)
-
+//
 function moveShooter(event) {
     squares[currentShooterIndex].classList.remove('shooter')
     switch (event.keyCode) {
         case 65:
         case 37:
-            if (currentShooterIndex % width !== 0)
+            if (currentShooterIndex % width !== 0){
                 currentShooterIndex -= 1
+            }
+
             break
         case 68:
         case 39:
-            if (currentShooterIndex % width < width - 1)
+            if (currentShooterIndex % width < width - 1){
                 currentShooterIndex += 1
+            }
             break
     }
     squares[currentShooterIndex].classList.add('shooter')
@@ -140,12 +145,12 @@ function shoot(event) {
 
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
             //tìm kiếm vị trí phần tử bị dính đạn= vị trí currentLaserIndex
-            // -> trả về vị trí index trong mảng alienInvader
+            // -> trả về vị trí index trong mảng alienInvader (0-->29)
             aliensRemoved.push(alienRemoved)
             // đưa vị trí bị dính đạn vào alienRemoved
             results++
             resultsDisplay.innerHTML = results
-            console.log(aliensRemoved)
+            console.log('bị loại===',aliensRemoved)
 
         }
     }
