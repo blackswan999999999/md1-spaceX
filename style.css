@@ -3,15 +3,33 @@
     height: 300px;
     border: solid black 1px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+
+/*    khởi tạo container*/
+/*   wrap: Các item có thể chia thành nhiều hàng nếu không đủ diện tích
+với chiều là chiều của flex-direction. */
+/*flex-direction: row(mặc định): Hiển thị các item từ trái qua phải. */
+/*
+ - Trục chính là một vector có phương và chiều theo thuộc tính flex-direction.*/
+/*
+
+
+
+   - Trục đối xứng là một vector vuông góc với trục chính (từ trên xuống dưới).*/
+/*
+https://tuduydongian.com/2017/11/flex-box-css/#:~:text=Flexbox(Flexible%20box)%20l%C3%A0%20m%E1%BB%99t,container%20c%C3%B3%20th%E1%BB%83%20thay%20%C4%91%E1%BB%95i.
+*/
 }
 
-.grid div {
+.grid div  {
+    /*các item trong container*/
     width: 20px;
     height: 20px;
+
 }
 
-.invader {
+.invaderStyle {
     background-color: purple;
     border-radius: 10px;
 }
