@@ -1,10 +1,21 @@
+body {
+    height: 100%;
+    background-color: rgb(207, 239, 234);
+}
 .grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 300px;
     height: 300px;
-    border: solid black 1px;
+    border: solid #f17e09 1px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    border-radius: 10px;
+    background-color: rgb(182, 232, 207);
+    margin-top: 80px;
 
 /*    khởi tạo container*/
 /*   wrap: Các item có thể chia thành nhiều hàng nếu không đủ diện tích
@@ -30,18 +41,20 @@ https://tuduydongian.com/2017/11/flex-box-css/#:~:text=Flexbox(Flexible%20box)%2
 }
 
 .invaderStyle {
-    background-color: purple;
+    background-color: #b90bb9;
     border-radius: 10px;
 }
 
 .shooter {
-    background-color: green;
+    background-color: orange;
+    border-radius: 5px ;
 }
 
 .laser {
-    background-color: orange;
+    background-color: #e01919;
+    border-radius: 10px;
 }
 
 .boom {
-    background-color: red;
+    background-color: darkred;
 }

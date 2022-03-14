@@ -1,25 +1,26 @@
 const grid = document.querySelector('.grid')
 const resultsDisplay = document.querySelector('.results')
 
+
+
 let currentShooterIndex = 224
 
 let width = 15
 let direction = 1
 let invadersId
 let goingRight = true
-//
+
 let aliensRemoved = []
 let results = 0
-// //
+
 for (let i = 0; i < 225; i++) {
     const square = document.createElement('div')
     grid.appendChild(square)
 }
 
 const squares = Array.from(document.querySelectorAll('.grid div'))
-// // //khởi tạo mảng gồm n phần tử giống nhau từ kết quả trả về của querySelectorAll
-// // //https://www.javascripttutorial.net/javascript-dom/javascript-queryselector/
-// // console.log('squares====',squares)
+// khởi tạo mảng gồm n phần tử giống nhau từ kết quả trả về của querySelectorAll
+//  console.log('squares====',squares)
 let alienInvaders = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
     15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
@@ -83,24 +84,23 @@ function moveInvaders() {
         // console.log(alienInvaders[i])
         if (alienInvaders[i] > squares.length-15) {
             resultsDisplay.innerHTML = 'GAME OVER'
-            window.location.reload()
-            // clearInterval(invadersId)
+            setTimeout(()=>window.location.reload(),200)
+
         }
     }
     if (aliensRemoved.length === alienInvaders.length) {
         resultsDisplay.innerHTML = 'YOU WIN'
-        window.location.reload()
-        // clearInterval(invadersId)
+        setTimeout(()=>window.location.reload(),200)
     }
 }
 
-invadersId = setInterval(moveInvaders, 1000)
+invadersId = setInterval(moveInvaders, 500)
 
 
 
 squares[currentShooterIndex].classList.add('shooter')
 // console.log(squares)
-//
+
 function moveShooter(event) {
     squares[currentShooterIndex].classList.remove('shooter')
     switch (event.keyCode) {
@@ -131,7 +131,12 @@ function shoot(event) {
     function moveLaser() {
         squares[currentLaserIndex].classList.remove('laser')
         currentLaserIndex -= width
-        squares[currentLaserIndex].classList.add('laser')
+        if (currentLaserIndex >0){
+            squares[currentLaserIndex].classList.add('laser')
+        }  else {
+            clearInterval(laserId);
+        }
+        console.log(currentLaserIndex)
 
         if (squares[currentLaserIndex].classList.contains('invaderStyle')) {
 
@@ -140,9 +145,7 @@ function shoot(event) {
             squares[currentLaserIndex].classList.add('boom')
 
             setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 300)
-            //https://developer.mozilla.org/en-US/docs/Web/API/setTimeout  chức năng không đồng bộ
             clearInterval(laserId)
-
             const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
             //tìm kiếm vị trí phần tử bị dính đạn= vị trí currentLaserIndex
             // -> trả về vị trí index trong mảng alienInvader (0-->29)
